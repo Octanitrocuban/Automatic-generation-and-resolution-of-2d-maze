@@ -36,8 +36,9 @@ The list of script and their purpose:
 			
 			-TriHandSolvePath: This function will browse the list of positions in the array Chemin and remove all the 'backward' due to dead-end or loop (roundabout).
 
-	-MazeShowers.py: this script contain the functions to show the mazes and their paths and to 
+	-MazeShowers.py: 
+		This script contain the functions to show the mazes, their solution path, and the distance from ground nods to the exit nod.
 	
-		-FullLabyrinthe: Automatic generation and resolution of mazes with the method in MazeGenerators.py and MazeSolvers.py. Show of the maze at different step is also possible through the variable Plot. It is also possible to know the time took by the step throug the variable Timing.
+			-FullLabyrinthe: Automatic generation and resolution of mazes with the method in MazeGenerators.py and MazeSolvers.py. Show of the maze at different step is also possible through the variable Plot. It is also possible to know the time took by the step throug the variable Timing.
 		
-		-ShowMaze: Function to show the maze once it is build. It is possible to add the path from start to exit and the gradient of the distance of the ground nods to the exit nod.
+			-ShowMaze: Function to show the maze once it is build. It is possible to add the path from start to exit and the gradient of the distance of the ground nods to the exit nod.
