@@ -40,4 +40,4 @@ The list of script and their purpose:
 	
 		-FullLabyrinthe: Automatic generation and resolution of mazes with the method in MazeGenerators.py and MazeSolvers.py. Show of the maze at different step is also possible through the variable Plot. It is also possible to know the time took by the step throug the variable Timing.
 		
-		-ShowMaze:
+		-ShowMaze: Function to show the maze once it is build. It is possible to add the path from start to exit and the gradient of the distance of the ground nods to the exit nod.
