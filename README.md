@@ -38,6 +38,6 @@ The list of script and their purpose:
 
 	-MazeShowers.py: this script contain the functions to show the mazes and their paths and to 
 	
-		-FullLabyrinthe:
+		-FullLabyrinthe: Automatic generation and resolution of mazes with the method in MazeGenerators.py and MazeSolvers.py. Show of the maze at different step is also possible through the variable Plot. It is also possible to know the time took by the step throug the variable Timing.
 		
 		-ShowMaze:
