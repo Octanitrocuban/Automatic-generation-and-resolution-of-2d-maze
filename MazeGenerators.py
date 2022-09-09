@@ -2,7 +2,7 @@
 """
 Created on Thu Apr  7 16:40:12 2022
 
-@author: Matthieu Nougaret
+@author: Octanitrocuban
 """
 #import usefull library
 import numpy as np
