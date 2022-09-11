@@ -26,3 +26,19 @@ The list of script and their purpose:
     This script contain the functions to show the mazes, their solution path, and the distance from ground nods to the exit nod.
       - FullLabyrinthe: Automatic generation and resolution of mazes with the method in MazeGenerators.py and MazeSolvers.py. Show of the maze at different step is also possible through the variable Plot. It is also possible to know the time took by the step throug the variable Timing.
       - ShowMaze: Function to show the maze once it is build. It is possible to add the path from start to exit and the gradient of the distance of the ground nods to the exit nod.
+      
+Following pictures shows exemple of what we can get.
+
+Using a size of 15. Creating the maze with the 'Exhaustif' method. And using 'Straight' method to solve it.
+![Exemple picture](Exaustif_Straigth_Sz15.png)
+
+Using a size of 15. Creating the maze with the 'Exhaustif' and 'Complexe' method. And using 'PreReduc' method to solve it.
+![Exemple picture](Exaustif_n_Complexe_PreReduc_Sz15.png)
+
+Using a size of 31. Creating the maze with the 'Fusion' and 'Complexe' method. And using 'RH' method to solve it.
+![Exemple picture](Fusion_n_Complexe_RH_Sz31.png)
+
+Using a size of 81. Creating the maze with the 'Fusion' method. And using 'LHSingle' method to solve it.
+![Exemple picture](Fusion_LHSingle_Sz81.png)
+
+Note that (depending on your computer) a moment when the size ask will be to big. For exemple, the maze of the file Fusion_Sz501.png was made with the 'Fusion' method and a size of 501 cells. It took ~8 to 15 minutes to create it on my Acer 8 core Ryzen. For these big maze, you should use the 'Exhaustif' method that is quicker. It took 5 to 11 minutes for creating this maze of size 501.
