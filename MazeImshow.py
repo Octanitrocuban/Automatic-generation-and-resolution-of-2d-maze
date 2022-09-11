@@ -180,7 +180,16 @@ def FullLabyrinthe(Size, creation, resolve, Plot, Timing=True):
 
 	elif "RH" in resolve:
 		t0 = datetime.now()
-		Chemin = RightHandSolve(Plat, False)
+		Chemin = WallHandSolve(Plat, 'R')
+		t1 = datetime.now()
+		if Timing == True:
+			print("Time to solves the maze =", str(str(t1-t0)))
+		if (Plot == "Labyrinthe")|(Plot == "all"):
+			ShowMaze(Plat, Chemin)
+
+	elif "LH" in resolve:
+		t0 = datetime.now()
+		Chemin = WallHandSolve(Plat, 'L')
 		t1 = datetime.now()
 		if Timing == True:
 			print("Time to solves the maze =", str(str(t1-t0)))
@@ -189,8 +198,18 @@ def FullLabyrinthe(Size, creation, resolve, Plot, Timing=True):
 
 	elif "RHSingle" in resolve:
 		t0 = datetime.now()
-		Chemin = RightHandSolve(Plat, False)
-		Chemin = TriRHPath(Chemin, Plat)
+		Chemin = WallHandSolve(Plat, 'R')
+		Chemin = TriHandSolvePath(Chemin)
+		t1 = datetime.now()
+		if Timing == True:
+			print("Time to solves the maze =", str(str(t1-t0)))
+		if (Plot == "Labyrinthe")|(Plot == "all"):
+			ShowMaze(Plat, Chemin)
+
+	elif "LHSingle" in resolve:
+		t0 = datetime.now()
+		Chemin = WallHandSolve(Plat, 'L')
+		Chemin = TriHandSolvePath(Chemin)
 		t1 = datetime.now()
 		if Timing == True:
 			print("Time to solves the maze =", str(str(t1-t0)))
