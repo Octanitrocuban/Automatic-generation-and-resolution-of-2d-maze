@@ -167,7 +167,7 @@ def FullLabyrinthe(Size, creation, resolve, Plot, Timing=True):
 
 	elif "PreReduc" in resolve:
 		t0 = datetime.now()
-		V = MazeMulti(Plat)
+		V = MazeReductionDE(Plat)
 		SS = MazeGradient(V)
 		DescDesc = DescenteGradMaze(SS)
 		SS = np.array(SS, dtype=float)
