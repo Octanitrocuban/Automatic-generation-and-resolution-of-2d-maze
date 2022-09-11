@@ -41,4 +41,4 @@ Using a size of 31. Creating the maze with the 'Fusion' and 'Complexe' method. A
 Using a size of 81. Creating the maze with the 'Fusion' method. And using 'LHSingle' method to solve it.
 ![Exemple picture](Fusion_LHSingle_Sz81.png)
 
-Note that (depending on your computer) a moment when the size ask will be to big. For exemple, the maze of the file Fusion_Sz501.png was made with the 'Fusion' method and a size of 501 cells. It took ~8 to 15 minutes to create it on my Acer 8 core Ryzen. For these big maze, you should use the 'Exhaustif' method that is quicker. It took 5 to 11 minutes for creating this maze of size 501.
+Note that (depending on your computer) a moment when the size ask will be to big. For exemple, the maze of the file Fusion_Sz501.png was made with the 'Fusion' method and a size of 501 cells. It took ~8 to 15 minutes to create it on my Acer 8 core Ryzen. For these big maze, you should use the 'Exhaustif' method that is quicker. It took 5 to 11 minutes for creating this maze of size 501 showed in Exhaustif_Sz501.png file.
