@@ -102,11 +102,11 @@ def create_maze_base_boolean(arrete):
 
 def maze_formation(base):
 	"""
-	First method to generate automatically a maze. It take in input the output
-	of the function create_maze_base. It will randomly draw 2 indices between 1
-	and len(base)-2, then if it is a wall it break it by putting a 0 and the
-	newly 2 conected ground node are set at 2. It continue until all the
-	ground, starting and ending nodes are not connected together.
+	First method to generate automatically a maze. It take in input the
+	output of the function create_maze_base. It will randomly draw 2 indices
+	between 1 and len(base)-2, then if it is a wall it break it by putting a
+	0 and the newly 2 conected ground node are set at 2. It continue until
+	all the ground, starting and ending nodes are not connected together.
 
 	Parameters
 	----------
@@ -182,7 +182,8 @@ def make_maze_exhaustif(base):
 	Parameters
 	----------
 	base : 2d numpy array of int
-		The maze with -1 for wall, 0 for ground and 1 for starting and ending.
+		The maze with -1 for wall, 0 for ground and 1 for starting and
+		ending.
 
 	Returns
 	-------
@@ -209,11 +210,11 @@ def make_maze_exhaustif(base):
 	recadre[2:-2, 2:-2] = base
 	arrete4 = len(recadre)
 	if arrete4%2 == 0:
-		Nx = range(3, arrete4-2, 2)
+		nx = range(3, arrete4-2, 2)
 	else :
-		Nx = range(3, arrete4-3, 2)
+		nx = range(3, arrete4-3, 2)
 
-	x0, y0 = np.random.choice(Nx), np.random.choice(Nx)
+	x0, y0 = np.random.choice(nx), np.random.choice(nx)
 	open_list = []
 	open_list.append([x0, y0])
 	recadre[x0, y0] = 1
@@ -256,6 +257,127 @@ def make_maze_exhaustif(base):
 	recadre[recadre == 1] = 0
 	recadre = recadre[2:-2, 2:-2]
 	return recadre
+
+def kurskal(points):
+	"""
+	Function to compute Kruskal's algorithm.
+
+	Parameters
+	----------
+	node_p : numpy.ndarray
+		Position of the nodes. It will be used to compute the connection's
+		weight trhough euclidian distance.
+
+	Returns
+	-------
+	tree : numpy.ndarray
+		List of the nodes interconnections. The structure is as follow:
+		[self indices nodes from nodes_p, ...list of node connected...].
+
+	Example
+	-------
+	In [0]: dots = np.random.uniform(-3, 10, (11, 2))
+	In [1]: Kruskal_algorithm(dots)
+	Out[1]: array([array([0, 3, 7, 6]), array([1, 3]), array([ 2,  8, 10]),
+				   array([3, 0, 1]), array([ 4,  6,  9, 10]), array([5, 7]),
+				   array([6, 4, 0]), array([7, 5, 0]), array([8, 2]),
+				   array([9, 4]), array([10,  2,  4])], dtype=object)
+
+	"""
+	# calculates the distance matrix
+	m_dist = cdist(points, points, metric='euclidean').T
+	length = len(points)
+	# list of array
+	tree = list(np.arange(length)[:, np.newaxis])
+	mask = (np.arange(length)-np.arange(length)[:, np.newaxis]) > 0
+	# lists of index matrices
+	indices = list(np.meshgrid(range(length), range(length)))
+	# vector 1d to track connections in the tree and avoid loop formation
+	state = np.arange(length)
+	# We flatten the 2d matrix by keeping less than half of the distance
+	# matrix not to re-evaluate relationships between pairs of points.
+	sort_d = m_dist[mask]
+	# The same is done for index matrices
+	p_j = indices[0][mask]
+	p_i = indices[1][mask]
+	# Indices sorted in ascending order by distance values
+	rank = np.argsort(sort_d)
+	# Sorting indices and distance values
+	p_i = p_i[rank]
+	p_j = p_j[rank]
+	sort_d = sort_d[rank]
+	for i in range(len(sort_d)):
+		# To have no recontection with loops in the tree
+		if state[p_i[i]] != state[p_j[i]]:
+			tree[p_i[i]] = np.append(tree[p_i[i]], p_j[i])
+			tree[p_j[i]] = np.append(tree[p_j[i]], p_i[i])
+			# Update of the 'state' vector
+			minima = np.min([state[p_i[i]], state[p_j[i]]])
+			state[state == state[p_i[i]]] = minima
+			state[state == state[p_j[i]]] = minima
+			# early stoping to avoid useless loop
+			if len(state[state != minima]) == 0:
+				break
+
+	tree = np.array(tree, dtype=object)
+	return tree
+
+def kurskal_maze(n_node):
+	"""
+	Function to create a maze through the computation of a minimum spanning
+	tree with Kruskal's algorithm. The result is similar to that obtained
+	with maze_formation.
+
+	Parameters
+	----------
+	node_p : numpy.ndarray
+		Position of the nodes. It will be used to compute the connection's
+		weight trhough euclidian distance.
+
+	Returns
+	-------
+	carte : numpy.ndarray
+		The maze with -1 for wall and 0 for ground. At this stage, there is
+		one possible path to connect starting and ending node without
+		re-borrowing the same node several times.
+
+	Example
+	-------
+	In [0]: kurskal_maze(11)
+	Out[0]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+				   [ 0,  0, -1,  0,  0,  0,  0,  0,  0,  0, -1],
+				   [-1,  0, -1,  0, -1, -1, -1, -1, -1,  0, -1],
+				   [-1,  0,  0,  0, -1,  0,  0,  0, -1,  0, -1],
+				   [-1,  0, -1,  0, -1,  0, -1,  0, -1, -1, -1],
+				   [-1,  0, -1,  0, -1,  0, -1,  0,  0,  0, -1],
+				   [-1, -1, -1,  0, -1, -1, -1, -1, -1,  0, -1],
+				   [-1,  0,  0,  0,  0,  0,  0,  0, -1,  0, -1],
+				   [-1,  0, -1, -1, -1,  0, -1,  0, -1,  0, -1],
+				   [-1,  0, -1,  0,  0,  0, -1,  0,  0,  0,  0],
+				   [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
+
+	"""
+	if n_node%2 == 0:
+		x_nodes = (n_node)//2
+	else:
+		x_nodes = (n_node-1)//2
+
+	p_xy = np.meshgrid(range(x_node), range(x_node))
+	p_xy = np.array([np.ravel(p_xy[1]), np.ravel(p_xy[0])]).T
+	# Put random weigth on the connections
+	p_xy_r = p_xy + np.random.uniform(-0.1, 0.1, (len(p_xy), 2))
+	tree = kurskal(p_xy_r)
+	# From the tree to the map
+	carte = np.zeros((2*x_node+1, 2*x_node+1), dtype=int)-1
+	index = (p_xy*2+1)
+	carte[index[:, 0], index[:, 1]] = 0
+	for i in range(len(tree)):
+		mid = (index[tree[i][0]]+index[tree[i][1:]])//2
+		carte[mid[:, 0], mid[:, 1]] = 0
+
+	carte[1, 0] = 0
+	carte[-2, -1] = 0
+	return carte
 
 def make_maze_complex(base):
 	"""
