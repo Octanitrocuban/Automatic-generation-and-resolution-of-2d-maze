@@ -186,7 +186,7 @@ def make_maze_exhaustif(base):
 
 	Returns
 	-------
-	Ret : 2d numpy array of int
+	recadre : 2d numpy array of int
 		The maze with -1 for wall and 0 for ground. At this stage, there is
 		one possible path to connect starting and ending node without
 		re-borrowing the same node several times.
@@ -205,9 +205,9 @@ def make_maze_exhaustif(base):
 				  [-1, -1, -1, -1, -1, -1, -1, -1, -1]])
 
 	"""
-	Ret = np.full((base.shape[0]+4, base.shape[1]+4), -1)
-	Ret[2:-2, 2:-2] = base
-	arrete4 = len(Ret)
+	recadre = np.full((base.shape[0]+4, base.shape[1]+4), -1)
+	recadre[2:-2, 2:-2] = base
+	arrete4 = len(recadre)
 	if arrete4%2 == 0:
 		Nx = range(3, arrete4-2, 2)
 	else :
@@ -216,10 +216,10 @@ def make_maze_exhaustif(base):
 	x0, y0 = np.random.choice(Nx), np.random.choice(Nx)
 	open_list = []
 	open_list.append([x0, y0])
-	Ret[x0, y0] = 1
-	while len(np.unique(Ret)) != 2:
-		m = np.array([Ret[x0-2, y0], Ret[x0, y0-2],
-					  Ret[x0, y0+2], Ret[x0+2, y0]])
+	recadre[x0, y0] = 1
+	while len(np.unique(recadre)) != 2:
+		m = np.array([recadre[x0-2, y0], recadre[x0, y0-2],
+					  recadre[x0, y0+2], recadre[x0+2, y0]])
 		chx = None
 		if len(np.where(m == 0)[0]) > 0:
 			if len(np.where(m == 0)[0])== 1:
@@ -228,19 +228,19 @@ def make_maze_exhaustif(base):
 				chx = np.random.choice(np.where(m == 0)[0])
 
 			if chx == 0:
-				Ret[x0-2:x0, y0] = 1
+				recadre[x0-2:x0, y0] = 1
 				x0, y0 = x0-2, y0
 				open_list.append([x0, y0])
 			elif chx == 1:
-				Ret[x0, y0-2:y0] = 1
+				recadre[x0, y0-2:y0] = 1
 				x0, y0 = x0, y0-2
 				open_list.append([x0, y0])
 			elif chx == 2:
-				Ret[x0, y0:y0+3] = 1
+				recadre[x0, y0:y0+3] = 1
 				x0, y0 = x0, y0+2
 				open_list.append([x0, y0])
 			elif chx == 3:
-				Ret[x0:x0+3, y0] = 1
+				recadre[x0:x0+3, y0] = 1
 				x0, y0 = x0+2, y0
 				open_list.append([x0, y0])
 
@@ -248,14 +248,14 @@ def make_maze_exhaustif(base):
 			back = 1
 			while 0 not in m :
 				x0, y0 = open_list[-back]
-				m = np.array([Ret[x0-2, y0], Ret[x0, y0-2],
-							  Ret[x0, y0+2], Ret[x0+2, y0]])
+				m = np.array([recadre[x0-2, y0], recadre[x0, y0-2],
+							  recadre[x0, y0+2], recadre[x0+2, y0]])
 				back += 1
 				chx = "No choice"
 
-	Ret[Ret == 1] = 0
-	Ret = Ret[2:-2, 2:-2]
-	return Ret
+	recadre[recadre == 1] = 0
+	recadre = recadre[2:-2, 2:-2]
+	return recadre
 
 def make_maze_complex(base):
 	"""
@@ -302,11 +302,11 @@ def make_maze_complex(base):
 	for i in range(arrete):
 		x = np.random.randint(1, arrete-2)
 		if x%2 == 0:
-			CH_y = np.arange(1, arrete, 2)
+			ch_y = np.arange(1, arrete, 2)
 		else :
-			CH_y = np.arange(2, arrete-1, 2)
+			ch_y = np.arange(2, arrete-1, 2)
 
-		y = np.random.choice(CH_y)
+		y = np.random.choice(ch_y)
 		base[x, y] = 0
 
 	return base
