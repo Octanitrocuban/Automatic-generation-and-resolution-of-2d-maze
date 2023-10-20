@@ -5,11 +5,11 @@ The list of script and their purpose:
 
   - MazeGenerators.py:
     This script contain the functions to generate a maze as a 2d numpy array. The functions stored are:
-      - CreateMazeBase: Generate the basis that will be used by the first method to generate automatically a maze with the function MazeFormation.
-      - CreateMazeBaseBoolean: Generate the basis that will be used by the second method to generate automatically a maze with the function MakeMazeExhaustif.
-      - MazeFormation: First method to generate automatically a maze, take in input the output of the function CreateMazeBase. It will randomly draw 2 indices between 1 and len(Base)-2, then if it is a wall it break it by putting a 0 and the newly 2 conected ground node are set at 2. It continue until all the ground, starting and ending nodes are not connected together.
-      - MakeMazeExhaustif: Second method to generate automatically a maze. It take in input the output of the function CreateMazeBase. It randomly draw a position correponding to a ground node and change it's value from 0 to one. Then it randomly choose a unvisited other ground node in its four neighbours. It break the wall wall with a 1 and set the new gound node position to 1. It continue while all of his neighbours are visited. Then if all ground, starting and ending nodes are connected it stop, else it take the exact path it retraces his steps until he finds a possible passage, and rebreak the wall.
-      - MakeMazeComplex: This function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
+      - create_maze_base: Generate the basis that will be used by the first method to generate automatically a maze with the function MazeFormation.
+      - create_maze_base_boolean: Generate the basis that will be used by the second method to generate automatically a maze with the function MakeMazeExhaustif.
+      - maze_formation: First method to generate automatically a maze, take in input the output of the function CreateMazeBase. It will randomly draw 2 indices between 1 and len(Base)-2, then if it is a wall it break it by putting a 0 and the newly 2 conected ground node are set at 2. It continue until all the ground, starting and ending nodes are not connected together.
+      - make_maze_exhaustif: Second method to generate automatically a maze. It take in input the output of the function CreateMazeBase. It randomly draw a position correponding to a ground node and change it's value from 0 to one. Then it randomly choose a unvisited other ground node in its four neighbours. It break the wall wall with a 1 and set the new gound node position to 1. It continue while all of his neighbours are visited. Then if all ground, starting and ending nodes are connected it stop, else it take the exact path it retraces his steps until he finds a possible passage, and rebreak the wall.
+      - make_maze_complex: This function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
 
 
   - MazeSolvers.py:
