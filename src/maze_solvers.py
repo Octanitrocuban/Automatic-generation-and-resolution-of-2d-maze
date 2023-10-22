@@ -14,7 +14,7 @@ def maze_reduction(base):
 	"""
 	Look at the ground nodes, and if they are dead end, it turn them in wall.
 	Note that if you did not use the function make_maze_complex, there will be
-	only remain the unic straight path.
+	only remain the unique straight path.
 
 	Parameters
 	----------
@@ -77,7 +77,8 @@ def maze_gradient(array):
 	"""
 	Generate 2d numpy array of int with -1 for walls, and the other values are
 	the number of nodes to the ending node which is at 0. It continue until
-	all the ground nodes have not been explored.
+	all the ground nodes have not been explored. It is a self implementaion of
+	Dijkstra's algorithm.
 
 	Parameters
 	----------
@@ -486,7 +487,7 @@ def wall_hand_solve(base, hand):
 	recadre = np.full((width+2, width+2), -1)
 	recadre[1:-1, 1:-1] = base
 	position = [2, 1]
-	direction = "E"#la main est donc sur le mur Sud
+	direction = "E" # Hand on the south wall
 	end = [np.shape(recadre)[0]-3, np.shape(recadre)[1]-2]
 	c = 0
 	trajet = []
@@ -522,7 +523,7 @@ def wall_hand_solve(base, hand):
 
 def tri_hand_solve_path(path):
 	"""
-	This function will browse the list of positions in the array Chemin and
+	This function will browse the list of positions in the array 'path' and
 	remove all the 'backward' due to dead-end or loop (roundabout).
 
 	Parameters
