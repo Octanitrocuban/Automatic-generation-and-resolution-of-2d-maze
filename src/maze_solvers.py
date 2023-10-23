@@ -137,7 +137,6 @@ def maze_gradient(array):
 							  [positions[:, 0], positions[:, 1]+1]])
 
 		positions = np.concatenate(positions, axis=1).T
-		positions = np.unique(positions, axis=0)
 		positions = positions[(positions[:, 0] >= 0)&(
 							   positions[:, 1] >= 0)&(
 							   positions[:, 0] < shp[0])&(
@@ -145,6 +144,8 @@ def maze_gradient(array):
 
 		positions = positions[gradient[positions[:, 0],
 									   positions[:, 1]] == 0]
+
+		positions = np.unique(positions, axis=0)
 		dist += 1
 		if len(positions) == 0:
 			stop = True
