@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-@author: Matthieu Nougaret
-		 PhD student, Institut de Physique du Globe de Paris
-		 Volcanic Systems
-
 This script contain the functions to show the mazes, their solution path, and
 the distance from ground nods to the exit nod.
 """
