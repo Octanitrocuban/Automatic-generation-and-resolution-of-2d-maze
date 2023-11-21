@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-@author: Matthieu Nougaret
-		 PhD student, Institut de Physique du Globe de Paris
-		 Volcanic Systems
-
 This module contain functions to create maze with square array.
 """
 #import usefull library
