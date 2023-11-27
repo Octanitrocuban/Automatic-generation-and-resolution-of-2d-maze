@@ -32,16 +32,16 @@ The list of script and their purpose:
 
 
 ## Some examples
-Using a size of 15. Creating the maze with the 'exhaustif' (random walk) method. And using 'straight' method to solve it.
+Using a size of 15. Creating the maze with the 'randwalk' method. And using 'straight' method to solve it.
 ![Exemple picture](img/Exaustif_Straigth_Sz15.png)
 
-Using a size of 15. Creating the maze with the 'exhaustif' (random walk) and 'complexe' method. And using 'PreReduc' method to solve it.
+Using a size of 15. Creating the maze with the 'exhaustif' (random walk) and complexit=True method. And using 'pre_reduc' method to solve it.
 ![Exemple picture](img/Exaustif_n_Complexe_PreReduc_Sz15.png)
 
-Using a size of 31. Creating the maze with the 'fusion' and 'Complexe' method. And using 'RH' method to solve it.
+Using a size of 31. Creating the maze with the 'fusion' and complexit=True method. And using 'right_hand' method to solve it.
 ![Exemple picture](img/Fusion_n_Complexe_RH_Sz31.png)
 
-Using a size of 81. Creating the maze with the 'fusion' method. And using 'LHSingle' method to solve it.
+Using a size of 81. Creating the maze with the 'fusion' method. And using 'left_hand_single' method to solve it.
 ![Exemple picture](img/Fusion_LHSingle_Sz81.png)
 
 Using 11, 21, 51 and 201 as size with Kurskal method.
