@@ -79,10 +79,8 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 	complexit : bool
 		If True applied complexification function to the maze.
 	resolve : list of string
-#=============================================================================
 		From ('pre_reduc' or None) and ('right_hand', 'right_hand_single',
 		'left_hand', 'left_hand_single', or 'straight').
-		
 	plot : string
 		from 'all' or 'maze' or 'empty' or None.
 	timing : Bool, optional
