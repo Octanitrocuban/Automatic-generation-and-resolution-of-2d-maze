@@ -123,16 +123,16 @@ def maze_gradient(array):
 	# calculate the position at the end of the maze
 	positions = np.copy([[shp[0]-2, shp[1]-1]])
 	gradient = np.copy(array)
+	kernel = np.array([[[-1,  0]], [[ 0, -1]], [[ 0,  1]], [[ 1,  0]]])
 	stop = False
 	dist = 1
 	while stop != True:
 		gradient[positions[:, 0], positions[:, 1]] = dist
-		positions = np.array([[positions[:, 0]-1, positions[:, 1]],
-							  [positions[:, 0]+1, positions[:, 1]],
-							  [positions[:, 0], positions[:, 1]-1],
-							  [positions[:, 0], positions[:, 1]+1]])
+		positions = positions+kernel
+		p_shape = positions.shape
+		positions = np.reshape(positions,
+							  (p_shape[0]*p_shape[1], 2))
 
-		positions = np.concatenate(positions, axis=1).T
 		positions = positions[(positions[:, 0] >= 0)&(
 							   positions[:, 1] >= 0)&(
 							   positions[:, 0] < shp[0])&(
@@ -261,7 +261,6 @@ def step_right_hand(maze_map, x, y, regard):
 
 	[In 1]: step_right_hand(Maze, 1, 1, 'E')
 	[Out 1]: (2, 1, 'S')
-	
 
 	"""
 	if regard == "E":
@@ -484,7 +483,7 @@ def wall_hand_solve(base, hand):
 	recadre = np.full((width+2, width+2), -1)
 	recadre[1:-1, 1:-1] = base
 	position = [2, 1]
-	direction = "E" # Hand on the south wall
+	direction = "E"#la main est donc sur le mur Sud
 	end = [np.shape(recadre)[0]-3, np.shape(recadre)[1]-2]
 	c = 0
 	trajet = []
@@ -520,7 +519,7 @@ def wall_hand_solve(base, hand):
 
 def tri_hand_solve_path(path):
 	"""
-	This function will browse the list of positions in the array 'path' and
+	This function will browse the list of positions in the array Chemin and
 	remove all the 'backward' due to dead-end or loop (roundabout).
 
 	Parameters
