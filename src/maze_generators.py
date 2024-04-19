@@ -359,7 +359,7 @@ def kurskal_maze(n_node):
 	else:
 		x_nodes = (n_node-1)//2
 
-	p_xy = np.meshgrid(range(x_node), range(x_node))
+	p_xy = np.meshgrid(range(x_nodes), range(x_nodes))
 	p_xy = np.array([np.ravel(p_xy[1]), np.ravel(p_xy[0])]).T
 	# Put random weigth on the connections
 	p_xy_r = p_xy + np.random.uniform(-0.1, 0.1, (len(p_xy), 2))
