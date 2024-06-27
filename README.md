@@ -11,7 +11,7 @@ The list of script and their purpose:
       - make_maze_exhaustif: Second method to generate automatically a maze. It take in input the output of the function create_maze_base_bool. It randomly draw a position correponding to a ground node and change it's value from 0 to one. Then it randomly choose a unvisited other ground node in its three (or less) unexplored neighbours. It break the wall with a 1 and set the new gound node position to 1. It continue while all of his neighbours are visited. Then if all ground, starting and ending nodes are connected it stop, else it take the exact path it retraces his steps until he finds a possible passage, and rebreak the wall.
       - make_maze_complex: This function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
     ### New (20/10/2023)
-    - kurskal: Function to compute the minimum spanning tree o a dot cloud with Kruskal's algorithm.
+    - kurskal: Function to compute the minimum spanning tree of a dot cloud with Kruskal's algorithm.
     - kurskal_maze: This function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
 
 
