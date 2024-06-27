@@ -63,3 +63,6 @@ Time took to create maze depends of their size and of the algorithm as we can se
 
 ![Time took](img/time_contruction_methods.png)
 
+### Version 1.1
+27/06/2024
+make_maze_exhaustif is 60% faster
