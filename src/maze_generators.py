@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 This module contain functions to create maze with square array.
+Implemented methods:
+	- fusion
+	- random walk
+	- kurskal
+
 """
 #import usefull library
 import numpy as np
@@ -76,7 +81,7 @@ def create_maze_base_boolean(arrete):
 	-------
 	[In]: create_maze_base_boolean(8)
 	[Out]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1],
-			      [ 1,  0, -1,  0, -1,  0, -1,  0, -1],
+				  [ 1,  0, -1,  0, -1,  0, -1,  0, -1],
 				  [-1, -1, -1, -1, -1, -1, -1, -1, -1],
 				  [-1,  0, -1,  0, -1,  0, -1,  0, -1],
 				  [-1, -1, -1, -1, -1, -1, -1, -1, -1],
@@ -133,10 +138,12 @@ def maze_formation(base):
 
 	"""
 	arrete = len(base)
+	# Get the positions of the walls which can be broke
 	walls = np.zeros((arrete, arrete))
 	walls[::2] = 1
 	walls = walls+walls.T
 	walls = np.argwhere(walls[1:-1, 1:-1] == 1)+1
+	# walls which aren't break yet
 	unbreaked = np.ones(len(walls), dtype=bool)
 	labyrinthe = np.copy(base)
 	labyrinthe[1, 0] = 0
@@ -144,21 +151,27 @@ def maze_formation(base):
 	labyrinthe[-2, -1] = 0
 	kernel = np.array([[-1, 0], [0, -1], [0, 1], [1, 0]])
 	for i in range(len(walls)):
+		# draw the which could have one of its wall broke down
 		rand = np.random.randint(len(walls))
+		# set the breakability to False
 		unbreaked[rand] = False
 		choice = walls[rand]
 		dalles = choice+kernel
 		dalles = dalles[labyrinthe[dalles[:, 0], dalles[:, 1]] != -1]
 		val_1 = labyrinthe[dalles[0, 0], dalles[0, 1]]
 		val_2 = labyrinthe[dalles[1, 0], dalles[1, 1]]
+		# if the two path aren't connecte yet
 		if val_1 != val_2:
+			# break the wall
 			labyrinthe[choice[0], choice[1]] = 0
 			minima = np.min([val_1, val_2])
 			labyrinthe[labyrinthe == val_1] = minima
 			labyrinthe[labyrinthe == val_2] = minima
+			# if every ground nodes have been reached
 			if np.max(labyrinthe) == 0:
 				break
 
+		# remove breaked wall
 		walls = walls[unbreaked]
 		unbreaked = unbreaked[unbreaked]
 
@@ -203,7 +216,9 @@ def make_maze_exhaustif(base):
 				  [-1, -1, -1, -1, -1, -1, -1, -1, -1]])
 
 	"""
+	# filled with -1
 	recadre = np.full((base.shape[0]+4, base.shape[1]+4), -1)
+	# filled with -1, 0 and 1
 	recadre[2:-2, 2:-2] = base
 	arrete4 = len(recadre)
 	if arrete4%2 == 0:
@@ -211,45 +226,50 @@ def make_maze_exhaustif(base):
 	else :
 		nx = range(3, arrete4-3, 2)
 
-	x0, y0 = np.random.choice(nx), np.random.choice(nx)
-	open_list = []
-	open_list.append([x0, y0])
-	recadre[x0, y0] = 1
-	while len(np.unique(recadre)) != 2:
-		m = np.array([recadre[x0-2, y0], recadre[x0, y0-2],
-					  recadre[x0, y0+2], recadre[x0+2, y0]])
-		chx = None
-		if len(np.where(m == 0)[0]) > 0:
-			if len(np.where(m == 0)[0])== 1:
-				chx = np.where(m == 0)[0]
-			elif len(np.where(m == 0)[0]) > 1:
-				chx = np.random.choice(np.where(m == 0)[0])
+	kernel = np.array([[[-2, 0]], [[0, -2]], [[0, 2]], [[2, 0]]], dtype=int)
+	kern_cr = np.array([[[-2, 0], [-1, 0]], [[0, -2], [0, -1]],
+						[[ 0, 2], [ 0, 1]], [[2,  0], [1,  0]]], dtype=int)
 
-			if chx == 0:
-				recadre[x0-2:x0, y0] = 1
-				x0, y0 = x0-2, y0
-				open_list.append([x0, y0])
-			elif chx == 1:
-				recadre[x0, y0-2:y0] = 1
-				x0, y0 = x0, y0-2
-				open_list.append([x0, y0])
-			elif chx == 2:
-				recadre[x0, y0:y0+3] = 1
-				x0, y0 = x0, y0+2
-				open_list.append([x0, y0])
-			elif chx == 3:
-				recadre[x0:x0+3, y0] = 1
-				x0, y0 = x0+2, y0
-				open_list.append([x0, y0])
+	open_list = np.zeros((len(nx)**2, 2), dtype=int)
 
+	# random starting point of the walk
+	open_list[0] = np.random.choice(nx, 2)
+	adven = 0
+
+	# explored node is turn to 1
+	recadre[open_list[0, 0], open_list[0, 1]] = 1
+	while 0 in recadre:
+		# get the neigbor of the current node
+		cross = open_list[adven]+kernel[:, 0]
+		m = recadre[cross[:, 0], cross[:, 1]]
+		possible = np.where(m == 0)[0]
+
+		# if at least one of them aren't connected yet
+		if len(possible) > 0:
+			# if there is only one possible choice
+			if len(possible) == 1:
+				chx = possible[0]
+
+			# if there are more than one
+			elif len(possible) > 1:
+				chx = np.random.choice(possible)
+
+			# to break the right wall in the right direction
+			dwarf = open_list[adven]+kern_cr[chx]
+
+			# breaking the wall and connecting the tile
+			recadre[dwarf[:, 0], dwarf[:, 1]] = 1
+
+			# updating position
+			adven += 1
+			open_list[adven] = cross[chx]
+
+		# if no walls to breake => bo back on your feet until you found
+		# breakable wall
 		else :
-			back = 1
-			while 0 not in m :
-				x0, y0 = open_list[-back]
-				m = np.array([recadre[x0-2, y0], recadre[x0, y0-2],
-							  recadre[x0, y0+2], recadre[x0+2, y0]])
-				back += 1
-				chx = "No choice"
+			neig = kernel+open_list[:adven]
+			mask = np.sum(recadre[neig[:, :, 0], neig[:, :, 1]] == 0, axis=0) > 0
+			adven = np.where(mask)[0][-1]
 
 	recadre[recadre == 1] = 0
 	recadre = recadre[2:-2, 2:-2]
