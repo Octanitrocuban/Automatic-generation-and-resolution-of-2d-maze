@@ -48,6 +48,7 @@ Using 11, 21, 51 and 201 as size with Kurskal method.
 ![Exemple picture](img/kurskal_11_21_51_201.png)
 
 Using 11, 51 and 201 as size with ticking method.
+![Exemple picture](img/ticking_11_51_201.png)
 
 
 ## Analysis of labyrinths created
