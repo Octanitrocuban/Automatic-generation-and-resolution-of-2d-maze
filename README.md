@@ -48,8 +48,10 @@ Using 11, 21, 51 and 201 as size with Kurskal method.
 ![Exemple picture](img/kurskal_11_21_51_201.png)
 
 Using 11, 51 and 201 as size with ticking method.
-![Exemple picture](img/ticking_11_51_201.png)
+We can see on the right most maze strong biais due to the incomplete exploration of the maze during the construction. To avoid these artefacts we can simply add more step during the construction of the maze as we can see on the second plot.
+![Exemple picture](img/ticking_11_51_201_biais.png)
 
+![Exemple picture](img/ticking_201_unbiais.png)
 
 ## Analysis of labyrinths created
 Distribution of nodes with one (dead end), two, three and four connections. The test was done by creating 1 000 random mazes for each method and eache maze size.
