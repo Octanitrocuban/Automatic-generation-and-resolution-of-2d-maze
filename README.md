@@ -5,14 +5,14 @@ The list of script and their purpose:
 
   - maze_generators.py:
     This script contain the functions to generate a maze as a 2d numpy array. The functions stored are:
-      - create_maze_base: Generate the basis that will be used by the first method to generate automatically a maze with the function maze_formation.
-      - create_maze_base_boolean: Generate the basis that will be used by the second method to generate automatically a maze with the function make_maze_exhaustif.
-      - maze_formation: First method to generate automatically a maze, take in input the output of the function create_maze_base. It will randomly draw 2 indices between 1 and len(base)-2, then if it is a wall it break it by putting a 0 and the newly 2 conected ground node are set at min([cell1, cell2]). It continue until all the ground, starting and ending nodes are not connected together.
-      - make_maze_exhaustif: Second method to generate automatically a maze. It take in input the output of the function create_maze_base_bool. It randomly draw a position correponding to a ground node and change it's value from 0 to one. Then it randomly choose a unvisited other ground node in its three (or less) unexplored neighbours. It break the wall with a 1 and set the new gound node position to 1. It continue while all of his neighbours are visited. Then if all ground, starting and ending nodes are connected it stop, else it take the exact path it retraces his steps until he finds a possible passage, and rebreak the wall.
-      - make_maze_complex: This function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
-    ### New (20/10/2023)
-    - kurskal: Function to compute the minimum spanning tree of a dot cloud with Kruskal's algorithm.
-    - kurskal_maze: This function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
+      - create_maze_base: generate the basis that will be used by the first method to generate automatically a maze with the function maze_formation.
+      - create_maze_base_boolean: generate the basis that will be used by the second method to generate automatically a maze with the function make_maze_exhaustif.
+      - maze_formation: first method to generate automatically a maze, take in input the output of the function create_maze_base. It will randomly draw 2 indices between 1 and len(base)-2, then if it is a wall it break it by putting a 0 and the newly 2 conected ground node are set at min([cell1, cell2]). It continue until all the ground, starting and ending nodes are not connected together.
+      - make_maze_exhaustif: second method to generate automatically a maze. It take in input the output of the function create_maze_base_bool. It randomly draw a position correponding to a ground node and change it's value from 0 to one. Then it randomly choose a unvisited other ground node in its three (or less) unexplored neighbours. It break the wall with a 1 and set the new gound node position to 1. It continue while all of his neighbours are visited. Then if all ground, starting and ending nodes are connected it stop, else it take the exact path it retraces his steps until he finds a possible passage, and rebreak the wall.
+      - kurskal: function to compute the minimum spanning tree of a dot cloud with Kruskal's algorithm.
+      - kurskal_maze: this function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
+      - ticking_maze: function to create a maze following the descripted algorithm in the youtube video of CaptainLuma in 'New Maze Generating Algorithm (Origin Shift)': https://www.youtube.com/watch?v=zbXKcDVV4G0
+      - make_maze_complex: this function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
 
 
   - maze_solvers.py:
@@ -63,6 +63,19 @@ Time took to create maze depends of their size and of the algorithm as we can se
 
 ![Time took](img/time_contruction_methods.png)
 
-### Version 1.1
+### Version 1.0
+04/09/2023
+Method to create mazes: fusion, random walk.
+Method to solve mazes: dijkstra's algorithm, right/left hand.
+
+### Version 2.0
+20/10/2023
+Add a new algorithm to create maze: kurskal_maze.
+
+### Version 2.1
 27/06/2024
 make_maze_exhaustif is 60% faster
+
+### Version 3.1
+07/07/2024
+Add a new algorithm to create maze: ticking_maze.
