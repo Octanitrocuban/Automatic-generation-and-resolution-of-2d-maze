@@ -47,6 +47,9 @@ Using a size of 81. Creating the maze with the 'fusion' method. And using 'left_
 Using 11, 21, 51 and 201 as size with Kurskal method.
 ![Exemple picture](img/kurskal_11_21_51_201.png)
 
+Using 11, 51 and 201 as size with ticking method.
+
+
 ## Analysis of labyrinths created
 Distribution of nodes with one (dead end), two, three and four connections. The test was done by creating 1 000 random mazes for each method and eache maze size.
 ![Analysis](img/distribution_of_connections_0.png)
@@ -76,6 +79,6 @@ Add a new algorithm to create maze: kurskal_maze.
 27/06/2024
 make_maze_exhaustif is 60% faster
 
-### Version 3.1
+### Version 3.0
 07/07/2024
 Add a new algorithm to create maze: ticking_maze.
