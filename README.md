@@ -29,6 +29,11 @@ The list of script and their purpose:
     This script contain the functions to show the mazes, their solution path, and the distance from ground nods to the exit nod.
       - show_maze: Function to show the maze once it is build. It is possible to add the path from start to exit and the gradient of the distance of the ground nods to the exit nod.
       - full_maze: Automatic generation and resolution of mazes with the method in maze_generators.py and maze_solvers.py. Show of the maze at different step is also possible through the variable plot. It is also possible to know the time took by the step throug the variable timing.
+      - caracterisation: function to compute the number of ground nodes with 1, 2, 3 and 4 connections with other ground nodes.
+
+
+
+  - examples.py: Script to test the different functions of maze_generator, maze_solver.py and maze_imshow.py.
 
 
 ## Some examples
@@ -85,3 +90,8 @@ make_maze_exhaustif is 60% faster
 ### Version 3.0
 07/07/2024
 Add a new algorithm to create maze: ticking_maze.
+
+### Version 3.1
+10/07/2024
+Add a new function to analyze maze: caracterisation.
+Add a script to gives examples on how to use the modules: examples.py
