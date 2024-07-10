@@ -6,8 +6,8 @@ the distance from ground nods to the exit nod.
 #import usefull library
 import numpy as np
 import matplotlib.pyplot as plt
-from maze_generators import *
-from maze_solvers import *
+import maze_generators as mg
+import maze_solvers as ms
 #=============================================================================
 def show_maze(maze_map, path=None, gradient=None):
 	"""
@@ -75,7 +75,7 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 	size : int
 		Length of the square of the maze. It must be stricly superior at 1.
 	creation : str
-		from ['randwalk', 'fusion', or 'kurskal']
+		From ['randwalk', 'fusion', 'kurskal' or 'ticking']
 	complexit : bool
 		If True applied complexification function to the maze.
 	resolve : list of string
@@ -109,7 +109,7 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 		The map of the maze with -1 for walls and 0 for ground.
 
 	"""
-	possible_creation = ['randwalk', 'fusion', 'kurskal']
+	possible_creation = ['randwalk', 'fusion', 'kurskal', 'ticking']
 	#Checking types&others of parameters
 	if type(size) != int:
 		raise TypeError("'size' must be list type, found: "+str(type(size)))
@@ -144,18 +144,21 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 		tini = datetime.now()
 
 	if "randwalk" in creation:
-		plat = create_maze_base_boolean(size)
-		plat = make_maze_exhaustif(plat)
+		plat = mg.create_maze_base_boolean(size)
+		plat = mg.make_maze_exhaustif(plat)
 
 	elif "fusion" in creation:
-		plat = create_maze_base(size)
-		plat = maze_formation(plat)
+		plat = mg.create_maze_base(size)
+		plat = mg.maze_formation(plat)
 
 	elif "kurskal" in creation:
-		plat = kurskal_maze(size)
+		plat = mg.kurskal_maze(size)
+
+	elif 'ticking' in creation:
+		plat = mg.ticking_maze(size)
 
 	if complexit:
-		plat = make_maze_complex(plat)
+		plat = mg.make_maze_complex(plat)
 
 	if timing:
 		tfin = datetime.now()
@@ -168,8 +171,8 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 		if timing:
 			t0 = datetime.now()
 
-		solution = maze_gradient(plat)
-		desc = descente_grad_maze(solution)
+		solution = ms.maze_gradient(plat)
+		desc = ms.descente_grad_maze(solution)
 		solution = np.array(solution, dtype=float)
 		solution[solution == -1] = np.nan
 		if timing:
@@ -183,9 +186,9 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 		if timing:
 			t0 = datetime.now()
 
-		reduit = maze_reduction(plat)
-		solution = maze_gradient(reduit)
-		desc = descente_grad_maze(solution)
+		reduit = ms.maze_reduction(plat)
+		solution = ms.maze_gradient(reduit)
+		desc = ms.descente_grad_maze(solution)
 		solution = np.array(solution, dtype=float)
 		solution[solution == -1] = np.nan
 		if timing:
@@ -199,7 +202,7 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 		if timing:
 			t0 = datetime.now()
 
-		solution = wall_hand_solve(plat, 'R')
+		solution = ms.wall_hand_solve(plat, 'R')
 		
 		if timing:
 			t1 = datetime.now()
@@ -212,7 +215,7 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 		if timing:
 			t0 = datetime.now()
 
-		solution = wall_hand_solve(plat, 'L')
+		solution = ms.wall_hand_solve(plat, 'L')
 		if timing:
 			t1 = datetime.now()
 			print("Time to solves the maze =", str(str(t1-t0)))
@@ -224,8 +227,8 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 		if timing:
 			t0 = datetime.now()
 
-		solution = wall_hand_solve(plat, 'R')
-		solution = tri_hand_solve_path(solution)
+		solution = ms.wall_hand_solve(plat, 'R')
+		solution = ms.tri_hand_solve_path(solution)
 		if timing:
 			t1 = datetime.now()
 			print("Time to solves the maze =", str(str(t1-t0)))
@@ -237,8 +240,8 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 		if timing:
 			t0 = datetime.now()
 
-		solution = wall_hand_solve(plat, 'L')
-		solution = tri_hand_solve_path(solution)
+		solution = ms.wall_hand_solve(plat, 'L')
+		solution = ms.tri_hand_solve_path(solution)
 		if timing:
 			t1 = datetime.now()
 			print("Time to solves the maze =", str(str(t1-t0)))
