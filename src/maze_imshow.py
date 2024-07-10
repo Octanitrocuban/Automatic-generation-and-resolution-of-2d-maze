@@ -250,3 +250,34 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 			show_maze(plat, solution)
 
 	return plat
+
+def caracterisation(maze_map):
+	"""
+	Function to compute the number of ground nodes with 1, 2, 3 and 4
+	connections with other ground nodes.
+
+	Parameters
+	----------
+	maze_map : numpy.ndarray
+		2 dimensions numpy array of the maze. This array will have -1 for
+		wall nods, and 0 for ground nods.
+
+	Returns
+	-------
+	distrib : numpy.ndarray
+		1d array (vectore) storing the number of ground nodes with 1, 2, 3
+		and 4 connections with other ground nodes at index 0, 1, 2, and 3
+		respectively.
+
+	"""
+	kernel = np.array([[[1, 0]], [[0, 1]], [[-1, 0]], [[0, -1]]])
+	
+	ground_nodes = np.argwhere(maze_map[1:-1, 1:-1] == 0)
+	neighbors = ground_nodes+1+kernel
+	neighbors = np.sum(maze_map[neighbors[:, :, 0],
+							    neighbors[:, :, 1]] == 0, axis=0)
+
+	distribution = np.zeros(4)
+	values, counts = np.unique(neighbors, return_counts=True)
+	distribution[values-1] = counts/len(ground_nodes)
+	return distribution
