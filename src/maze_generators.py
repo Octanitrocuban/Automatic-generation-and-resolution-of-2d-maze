@@ -5,6 +5,7 @@ Implemented methods:
 	- fusion
 	- random walk
 	- kurskal
+	- ticking (Origin shift)
 
 """
 #import usefull library
