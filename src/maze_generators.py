@@ -6,6 +6,7 @@ Implemented methods:
 	- random walk
 	- kurskal
 	- ticking (Origin shift)
+	- jumping explorer
 
 """
 #import usefull library
@@ -34,16 +35,18 @@ def create_maze_base(arrete):
 
 	Exemple
 	-------
-	[In]: create_maze_base(8)
-	[Out]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [ 1,  2, -1,  3, -1,  4, -1,  5, -1],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [-1,  6, -1,  7, -1,  8, -1,  9, -1],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [-1, 10, -1, 11, -1, 12, -1, 13, -1],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [-1, 14, -1, 15, -1, 16, -1, 17, 18],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1]])
+	In [0]: create_maze_base(11)
+	Out[0]: np.array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [ 1,  2, -1,  3, -1,  4, -1,  5, -1,  6, -1],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [-1,  7, -1,  8, -1,  9, -1, 10, -1, 11, -1],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [-1, 12, -1, 13, -1, 14, -1, 15, -1, 16, -1],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [-1, 17, -1, 18, -1, 19, -1, 20, -1, 21, -1],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [-1, 22, -1, 23, -1, 24, -1, 25, -1, 26, 27],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
 
 	"""
 	# To adapt if an even value is given
@@ -80,16 +83,18 @@ def create_maze_base_boolean(arrete):
 
 	Exemple
 	-------
-	[In]: create_maze_base_boolean(8)
-	[Out]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [ 1,  0, -1,  0, -1,  0, -1,  0, -1],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [-1,  0, -1,  0, -1,  0, -1,  0, -1],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [-1,  0, -1,  0, -1,  0, -1,  0, -1],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [-1,  0, -1,  0, -1,  0, -1,  0,  1],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1]])
+	In [0]: create_maze_base_boolean(11)
+	Out[0]: np.array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [ 1,  0, -1,  0, -1,  0, -1,  0, -1,  0, -1],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [-1,  0, -1,  0, -1,  0, -1,  0, -1,  0, -1],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [-1,  0, -1,  0, -1,  0, -1,  0, -1,  0, -1],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [-1,  0, -1,  0, -1,  0, -1,  0, -1,  0, -1],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [-1,  0, -1,  0, -1,  0, -1,  0, -1,  0,  1],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
 
 	"""
 	if arrete%2 == 0:
@@ -105,7 +110,7 @@ def create_maze_base_boolean(arrete):
 
 def maze_formation(base):
 	"""
-	First method to generate automatically a maze. It take in input the
+	Method to generate automatically a maze. It take in input the
 	output of the function create_maze_base. It will randomly draw 2 indices
 	between 1 and len(base)-2, then if it is a wall it break it by putting a
 	0 and the newly 2 conected ground node are set at 2. It continue until
@@ -126,16 +131,18 @@ def maze_formation(base):
 
 	Exemple
 	-------
-	[In]: maze_formation(create_maze_base(8))
-	[Out]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [ 0,  0, -1,  0, -1,  0, -1,  0, -1],
-				  [-1,  0, -1,  0, -1,  0, -1,  0, -1],
-				  [-1,  0, -1,  0, -1,  0,  0,  0, -1],
-				  [-1,  0, -1,  0, -1, -1, -1,  0, -1],
-				  [-1,  0, -1,  0, -1,  0,  0,  0, -1],
-				  [-1,  0, -1,  0, -1,  0, -1, -1, -1],
-				  [-1,  0,  0,  0,  0,  0,  0,  0,  0],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1]])
+	In [0]: maze_formation(create_maze_base(11))
+	Out[0]: np.array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0, -1],
+					  [-1,  0, -1, -1, -1,  0, -1,  0, -1, -1, -1],
+					  [-1,  0,  0,  0, -1,  0, -1,  0,  0,  0, -1],
+					  [-1,  0, -1, -1, -1, -1, -1, -1, -1,  0, -1],
+					  [-1,  0,  0,  0, -1,  0,  0,  0, -1,  0, -1],
+					  [-1,  0, -1, -1, -1, -1, -1,  0, -1,  0, -1],
+					  [-1,  0,  0,  0, -1,  0,  0,  0,  0,  0, -1],
+					  [-1,  0, -1,  0, -1, -1, -1,  0, -1, -1, -1],
+					  [-1,  0, -1,  0, -1,  0,  0,  0,  0,  0,  0],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
 
 	"""
 	arrete = len(base)
@@ -144,6 +151,7 @@ def maze_formation(base):
 	walls[::2] = 1
 	walls = walls+walls.T
 	walls = np.argwhere(walls[1:-1, 1:-1] == 1)+1
+
 	# walls which aren't break yet
 	unbreaked = np.ones(len(walls), dtype=bool)
 	labyrinthe = np.copy(base)
@@ -154,6 +162,7 @@ def maze_formation(base):
 	for i in range(len(walls)):
 		# draw the which could have one of its wall broke down
 		rand = np.random.randint(len(walls))
+
 		# set the breakability to False
 		unbreaked[rand] = False
 		choice = walls[rand]
@@ -161,6 +170,7 @@ def maze_formation(base):
 		dalles = dalles[labyrinthe[dalles[:, 0], dalles[:, 1]] != -1]
 		val_1 = labyrinthe[dalles[0, 0], dalles[0, 1]]
 		val_2 = labyrinthe[dalles[1, 0], dalles[1, 1]]
+
 		# if the two path aren't connecte yet
 		if val_1 != val_2:
 			# break the wall
@@ -180,8 +190,8 @@ def maze_formation(base):
 
 def make_maze_exhaustif(base):
 	"""
-	Second method to generate automatically a maze. It take in input the
-	output of the function create_maze_base_bool. It randomly draw a position
+	Method to generate automatically a maze. It take in input the output of
+	the function create_maze_base_boolean. It randomly draw a position
 	correponding to a ground node and change it's value from 0 to one. Then
 	it randomly choose a unvisited other ground node in its four neighbours.
 	It break the wall wall with a 1 and set the new gound node position to 1.
@@ -205,20 +215,23 @@ def make_maze_exhaustif(base):
 		
 	Exemple
 	-------
-	[In]: make_maze_exhaustif(create_maze_base_boolean(8))
-	[Out]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1],
-				  [ 0,  0, -1,  0,  0,  0,  0,  0, -1],
-				  [-1,  0, -1,  0, -1, -1, -1,  0, -1],
-				  [-1,  0, -1,  0,  0,  0, -1,  0, -1],
-				  [-1,  0, -1, -1, -1, -1, -1,  0, -1],
-				  [-1,  0,  0,  0,  0,  0,  0,  0, -1],
-				  [-1, -1, -1, -1, -1, -1, -1,  0, -1],
-				  [-1,  0,  0,  0,  0,  0,  0,  0,  0],
-				  [-1, -1, -1, -1, -1, -1, -1, -1, -1]])
+	In [0]: make_maze_exhaustif(create_maze_base_boolean(11))
+	Out[0]: np.array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [ 0,  0, -1,  0,  0,  0,  0,  0,  0,  0, -1],
+					  [-1,  0, -1,  0, -1, -1, -1,  0, -1,  0, -1],
+					  [-1,  0,  0,  0, -1,  0, -1,  0, -1,  0, -1],
+					  [-1, -1, -1,  0, -1,  0, -1,  0, -1, -1, -1],
+					  [-1,  0, -1,  0,  0,  0, -1,  0,  0,  0, -1],
+					  [-1,  0, -1, -1, -1, -1, -1, -1, -1,  0, -1],
+					  [-1,  0, -1,  0,  0,  0, -1,  0,  0,  0, -1],
+					  [-1,  0, -1,  0, -1,  0, -1,  0, -1,  0, -1],
+					  [-1,  0,  0,  0, -1,  0,  0,  0, -1,  0,  0],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
 
 	"""
 	# filled with -1
 	recadre = np.full((base.shape[0]+4, base.shape[1]+4), -1)
+
 	# filled with -1, 0 and 1
 	recadre[2:-2, 2:-2] = base
 	arrete4 = len(recadre)
@@ -305,21 +318,28 @@ def kurskal(points):
 	# calculates the distance matrix
 	m_dist = cdist(points, points, metric='euclidean').T
 	length = len(points)
+
 	# list of array
 	tree = list(np.arange(length)[:, np.newaxis])
 	mask = (np.arange(length)-np.arange(length)[:, np.newaxis]) > 0
+
 	# lists of index matrices
 	indices = list(np.meshgrid(range(length), range(length)))
+
 	# vector 1d to track connections in the tree and avoid loop formation
 	state = np.arange(length)
+
 	# We flatten the 2d matrix by keeping less than half of the distance
 	# matrix not to re-evaluate relationships between pairs of points.
 	sort_d = m_dist[mask]
+
 	# The same is done for index matrices
 	p_j = indices[0][mask]
 	p_i = indices[1][mask]
+
 	# Indices sorted in ascending order by distance values
 	rank = np.argsort(sort_d)
+
 	# Sorting indices and distance values
 	p_i = p_i[rank]
 	p_j = p_j[rank]
@@ -329,10 +349,12 @@ def kurskal(points):
 		if state[p_i[i]] != state[p_j[i]]:
 			tree[p_i[i]] = np.append(tree[p_i[i]], p_j[i])
 			tree[p_j[i]] = np.append(tree[p_j[i]], p_i[i])
+
 			# Update of the 'state' vector
 			minima = np.min([state[p_i[i]], state[p_j[i]]])
 			state[state == state[p_i[i]]] = minima
 			state[state == state[p_j[i]]] = minima
+
 			# early stoping to avoid useless loop
 			if len(state[state != minima]) == 0:
 				break
@@ -362,17 +384,17 @@ def kurskal_maze(n_node):
 	Example
 	-------
 	In [0]: kurskal_maze(11)
-	Out[0]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-				   [ 0,  0, -1,  0,  0,  0,  0,  0,  0,  0, -1],
-				   [-1,  0, -1,  0, -1, -1, -1, -1, -1,  0, -1],
-				   [-1,  0,  0,  0, -1,  0,  0,  0, -1,  0, -1],
-				   [-1,  0, -1,  0, -1,  0, -1,  0, -1, -1, -1],
-				   [-1,  0, -1,  0, -1,  0, -1,  0,  0,  0, -1],
-				   [-1, -1, -1,  0, -1, -1, -1, -1, -1,  0, -1],
-				   [-1,  0,  0,  0,  0,  0,  0,  0, -1,  0, -1],
-				   [-1,  0, -1, -1, -1,  0, -1,  0, -1,  0, -1],
-				   [-1,  0, -1,  0,  0,  0, -1,  0,  0,  0,  0],
-				   [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
+	Out[0]: np.array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [ 0,  0, -1,  0,  0,  0,  0,  0,  0,  0, -1],
+					  [-1,  0, -1,  0, -1, -1, -1, -1, -1,  0, -1],
+					  [-1,  0,  0,  0, -1,  0,  0,  0, -1,  0, -1],
+					  [-1,  0, -1,  0, -1,  0, -1,  0, -1, -1, -1],
+					  [-1,  0, -1,  0, -1,  0, -1,  0,  0,  0, -1],
+					  [-1, -1, -1,  0, -1, -1, -1, -1, -1,  0, -1],
+					  [-1,  0,  0,  0,  0,  0,  0,  0, -1,  0, -1],
+					  [-1,  0, -1, -1, -1,  0, -1,  0, -1,  0, -1],
+					  [-1,  0, -1,  0,  0,  0, -1,  0,  0,  0,  0],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
 
 	"""
 	if n_node%2 == 0:
@@ -382,9 +404,11 @@ def kurskal_maze(n_node):
 
 	p_xy = np.meshgrid(range(x_nodes), range(x_nodes))
 	p_xy = np.array([np.ravel(p_xy[1]), np.ravel(p_xy[0])]).T
+
 	# Put random weigth on the connections
 	p_xy_r = p_xy + np.random.uniform(-0.1, 0.1, (len(p_xy), 2))
 	tree = kurskal(p_xy_r)
+
 	# From the tree to the map
 	carte = np.zeros((2*x_nodes+1, 2*x_nodes+1), dtype=int)-1
 	index = (p_xy*2+1)
@@ -396,6 +420,36 @@ def kurskal_maze(n_node):
 	carte[1, 0] = 0
 	carte[-2, -1] = 0
 	return carte
+
+def fork_init(size):
+	"""
+	Fork like structure initialization for the ticking maze.
+
+	Parameters
+	----------
+	size : int
+		DESCRIPTION.
+
+	Returns
+	-------
+	directions : numpy.ndarray
+		Directions of the nodes connections.
+
+	Example
+	-------
+	In [0]: fork_init(11)
+	Out[0]: np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+				   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+				   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+				   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+				   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+				   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1], dtype=int8)
+
+	"""
+	directions = np.zeros((size, size), dtype='int8')
+	directions[:, -1] = 1
+	directions = np.ravel(directions)
+	return directions
 
 def ticking_maze(arrete, run_times=None):
 	"""
@@ -423,17 +477,17 @@ def ticking_maze(arrete, run_times=None):
 	Example
 	-------
 	In [0]: ticking_maze(11)
-	Out[0]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
-				   [ 0,  0,  0,  0,  0,  0,  0,  0, -1,  0, -1],
-				   [-1,  0, -1, -1, -1, -1, -1,  0, -1,  0, -1],
-				   [-1,  0,  0,  0, -1,  0,  0,  0, -1,  0, -1],
-				   [-1,  0, -1, -1, -1, -1, -1, -1, -1,  0, -1],
-				   [-1,  0, -1,  0,  0,  0, -1,  0,  0,  0, -1],
-				   [-1,  0, -1, -1, -1,  0, -1,  0, -1, -1, -1],
-				   [-1,  0,  0,  0, -1,  0,  0,  0,  0,  0, -1],
-				   [-1,  0, -1, -1, -1,  0, -1,  0, -1, -1, -1],
-				   [-1,  0,  0,  0,  0,  0, -1,  0,  0,  0,  0],
-				   [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
+	Out[0]: np.array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [ 0,  0,  0,  0,  0,  0,  0,  0, -1,  0, -1],
+					  [-1,  0, -1, -1, -1, -1, -1,  0, -1,  0, -1],
+					  [-1,  0,  0,  0, -1,  0,  0,  0, -1,  0, -1],
+					  [-1,  0, -1, -1, -1, -1, -1, -1, -1,  0, -1],
+					  [-1,  0, -1,  0,  0,  0, -1,  0,  0,  0, -1],
+					  [-1,  0, -1, -1, -1,  0, -1,  0, -1, -1, -1],
+					  [-1,  0,  0,  0, -1,  0,  0,  0,  0,  0, -1],
+					  [-1,  0, -1, -1, -1,  0, -1,  0, -1, -1, -1],
+					  [-1,  0,  0,  0,  0,  0, -1,  0,  0,  0,  0],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
 
 	"""
 
@@ -445,16 +499,18 @@ def ticking_maze(arrete, run_times=None):
 	# Initialization
 	dots = np.meshgrid(range(0, size*2, 2), range(0, size*2, 2))
 	dots = np.array([np.ravel(dots[0]), np.ravel(dots[1])]).T
+
 	# Possible directions
 	reffer = np.array([[2, 0], [0, 2], [-2, 0], [0, -2]])
+
 	# what is the direction for each dots
-	directions = np.zeros((size, size), dtype='int8')
-	directions[:, -1] = 1
-	directions = np.ravel(directions)
+	directions = fork_init(size)
+
 	# to remove the unused connection
 	masque = np.ones(len(directions), dtype=bool)
 	current = len(directions)-1
-	# creating the tree of the connections of the dots
+
+	# creating the tree of all possible connections of the dots
 	all_connect = cdist(dots, dots)
 	mask_tree = (all_connect > 0)&(all_connect < 2.1)
 	tree = []
@@ -472,17 +528,22 @@ def ticking_maze(arrete, run_times=None):
 	for i in range(run_times):
 		# nodes connected to the current one
 		poss = tree[current]
+
 		# random next connection
 		next_i = np.random.randint(0, len(poss))
+
 		# direction to take to create this connection
 		directions[current] = dir_tree[current][next_i]
+
 		# next position id
 		next_p = poss[next_i]
+
 		# update current node id
 		current = next_p
 
 	masque[current] = False
 	dots += 1
+
 	# create the maze map
 	intersect = dots+reffer[directions]//2
 	intersect = intersect[masque]
@@ -492,6 +553,154 @@ def ticking_maze(arrete, run_times=None):
 	carte[dots[:, 0], dots[:, 1]] = 0
 	carte[intersect[:, 0], intersect[:, 1]] = 0
 	return carte
+
+def jumping_explorer(base):
+	"""
+	Method to generate automatically a maze. It take in input the output of
+	the function create_maze_base_boolean. It randomly draw a position
+	correponding to a ground node and change it's value from 0 to one. Then
+	it randomly choose a unvisited other ground node in its four neighbours.
+	It break the wall wall with a 1 and set the new gound node position to 1.
+	It continue while all of his neighbours are visited. Then if all ground,
+	starting and ending nodes are connected it stop, else it take a random
+	unreached cell and will run random walk until it found the main path or
+	is stuck.
+
+	Parameters
+	----------
+	base : 2d numpy array of int
+		The maze with -1 for wall, 0 for ground and 1 for starting and
+		ending.
+
+	Returns
+	-------
+	recadre : 2d numpy array of int
+		The maze with -1 for wall and 0 for ground. At this stage, there is
+		one possible path to connect starting and ending node without
+		re-borrowing the same node several times.
+		
+	Exemple
+	-------
+	In [0]: jumping_explorer(create_maze_base_boolean(11))
+	Out[0]: np.array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0, -1],
+					  [-1,  0, -1, -1, -1, -1, -1, -1, -1,  0, -1],
+					  [-1,  0, -1,  0,  0,  0, -1,  0,  0,  0, -1],
+					  [-1,  0, -1,  0, -1,  0, -1,  0, -1, -1, -1],
+					  [-1,  0,  0,  0, -1,  0, -1,  0, -1,  0, -1],
+					  [-1, -1, -1, -1, -1, -1, -1,  0, -1,  0, -1],
+					  [-1,  0, -1,  0,  0,  0,  0,  0,  0,  0, -1],
+					  [-1,  0, -1,  0, -1, -1, -1, -1, -1,  0, -1],
+					  [-1,  0,  0,  0, -1,  0,  0,  0,  0,  0,  0],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
+
+	"""
+	recadre = np.full((base.shape[0]+4, base.shape[1]+4), -1)
+	recadre[2:-2, 2:-2] = base
+	arrete4 = len(recadre)
+	if arrete4%2 == 0:
+		nx = range(3, arrete4-2, 2)
+	else :
+		nx = range(3, arrete4-3, 2)
+
+	kernel = np.array([[[-2, 0]], [[0, -2]], [[0, 2]], [[2, 0]]], dtype=int)
+	kern_cr = np.array([[[-2, 0], [-1, 0]], [[0, -2], [0, -1]],
+						[[ 0, 2], [ 0, 1]], [[2,  0], [1,  0]]], dtype=int)
+
+	cells_p = np.meshgrid(nx, nx)
+	cells_p = np.array([np.ravel(cells_p[0]), np.ravel(cells_p[1])]).T
+	adven = 1
+	position = np.random.choice(nx, 2)
+	cells_p = cells_p[(cells_p[:, 0] != position[0])|(
+					   cells_p[:, 1] != position[1])]
+
+	recadre[position[0], position[1]] = 1
+	while 0 in recadre:
+		# get the neigbor of the current node
+		cross = position+kernel[:, 0]
+		m = recadre[cross[:, 0], cross[:, 1]]
+		if adven == 1:
+			possible = np.where((m == 0))[0]
+		else:
+			possible = np.where((m > -1)&(m < adven))[0]
+
+		# if at least one of them aren't connected yet
+		if len(possible) > 0:
+			# if there is only one possible choice
+			if len(possible) == 1:
+				chx = possible[0]
+
+			# if there are more than one
+			elif len(possible) > 1:
+				chx = np.random.choice(possible)
+
+			# to break the right wall in the right direction
+			dwarf = position+kern_cr[chx]
+
+			# breaking the wall and connecting the tile
+			recadre[dwarf[:, 0], dwarf[:, 1]] = adven
+			if m[chx] != 0:
+				# if we connect to a path
+				recadre[recadre == adven] = m[chx]
+				if len(cells_p) > 0:
+					# if there are still unexplored cells
+					position = cells_p[np.random.randint(len(cells_p))]
+					cells_p = cells_p[(cells_p[:, 0] != position[0])|(
+									   cells_p[:, 1] != position[1])]
+
+					adven += 1
+					recadre[position[0], position[1]] = adven
+
+				else:
+					break
+
+			else:
+				# updating position
+				position = cross[chx]
+				cells_p = cells_p[(cells_p[:, 0] != position[0])|(
+								   cells_p[:, 1] != position[1])]
+
+		elif len(cells_p) > 0:
+			# if there are still unexplored cells
+			position = cells_p[np.random.randint(len(cells_p))]
+			cells_p = cells_p[(cells_p[:, 0] != position[0])|(
+							   cells_p[:, 1] != position[1])]
+
+			adven += 1
+			recadre[position[0], position[1]] = adven
+
+		else:
+			break
+
+	# start and stop get the same values as their connected path
+	recadre[ 3,  2] = recadre[ 3,  3]
+	recadre[-4, -3] = recadre[-4, -4]
+
+	while len(recadre[recadre > 1]) > 0:
+		# while are the sub-path are not connected:
+		# unconnected path values
+		unic = np.unique(recadre[recadre > 1])
+		for i in range(len(unic)):
+			loc = np.argwhere(recadre == unic[i])
+			cross = loc + kernel
+			m = recadre[cross[:, :, 0], cross[:, :, 1]]
+			mini = np.min(m[(m > 0)&(m != unic[i])])
+			connect = np.argwhere(m == mini)
+			if len(connect) == 1:
+				chx = 0
+			elif len(connect) > 1:
+				chx = np.random.randint(len(connect))
+			else:
+				pass
+
+			# "drilling" the connection between two sub-path
+			dwarf = loc[connect[chx, 1]]+kern_cr[connect[chx, 0]]
+			recadre[dwarf[:, 0], dwarf[:, 1]] = mini
+			recadre[recadre == unic[i]] = mini
+
+	recadre[recadre > 0] = 0
+	recadre = recadre[2:-2, 2:-2]
+	return recadre
 
 def make_maze_complex(base):
 	"""
@@ -511,27 +720,31 @@ def make_maze_complex(base):
 		
 	Exemple
 	-------
-	[In 0]: _ = maze_formation(create_maze_base(8))
-	[Out 0]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1],
-					[ 0,  0, -1,  0, -1,  0, -1,  0, -1],
-					[-1,  0, -1,  0, -1,  0, -1,  0, -1],
-					[-1,  0, -1,  0, -1,  0,  0,  0, -1],
-					[-1,  0, -1,  0, -1, -1, -1,  0, -1],
-					[-1,  0, -1,  0,  0,  0,  0,  0, -1],
-					[-1,  0, -1,  0, -1,  0, -1, -1, -1],
-					[-1,  0,  0,  0, -1,  0,  0,  0,  0],
-					[-1, -1, -1, -1, -1, -1, -1, -1, -1]])
+	In [0]: maze_formation(create_maze_base(11))
+	Out[0]: np.array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					  [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0, -1],
+					  [-1,  0, -1, -1, -1,  0, -1,  0, -1, -1, -1],
+					  [-1,  0,  0,  0, -1,  0, -1,  0,  0,  0, -1],
+					  [-1,  0, -1, -1, -1, -1, -1, -1, -1,  0, -1],
+					  [-1,  0,  0,  0, -1,  0,  0,  0, -1,  0, -1],
+					  [-1,  0, -1, -1, -1, -1, -1,  0, -1,  0, -1],
+					  [-1,  0,  0,  0, -1,  0,  0,  0,  0,  0, -1],
+					  [-1,  0, -1,  0, -1, -1, -1,  0, -1, -1, -1],
+					  [-1,  0, -1,  0, -1,  0,  0,  0,  0,  0,  0],
+					  [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
 	
 	[In 1]: make_maze_complex(_)
-	[Out 1]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1],
-					[ 0,  0,  0,  0, -1,  0, -1,  0, -1],
-					[-1,  0, -1,  0, -1,  0, -1,  0, -1],
-					[-1,  0, -1,  0, -1,  0,  0,  0, -1],
-					[-1,  0, -1,  0, -1, -1, -1,  0, -1],
-					[-1,  0, -1,  0,  0,  0,  0,  0, -1],
-					[-1,  0, -1,  0, -1,  0, -1, -1, -1],
-					[-1,  0,  0,  0,  0,  0,  0,  0,  0],
-					[-1, -1, -1, -1, -1, -1, -1, -1, -1]])
+	[Out 1]: np.array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+					   [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0, -1],
+					   [-1,  0, -1,  0, -1,  0, -1,  0, -1, -1, -1],
+					   [-1,  0,  0,  0,  0,  0, -1,  0,  0,  0, -1],
+					   [-1,  0, -1,  0, -1,  0, -1,  0, -1,  0, -1],
+					   [-1,  0,  0,  0,  0,  0,  0,  0,  0,  0, -1],
+					   [-1,  0, -1, -1, -1, -1, -1,  0, -1,  0, -1],
+					   [-1,  0,  0,  0, -1,  0,  0,  0,  0,  0, -1],
+					   [-1,  0, -1,  0, -1, -1, -1,  0, -1, -1, -1],
+					   [-1,  0, -1,  0, -1,  0,  0,  0,  0,  0,  0],
+					   [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]])
 
 	"""
 	arrete = len(base)
