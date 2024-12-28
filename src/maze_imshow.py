@@ -109,7 +109,7 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 		The map of the maze with -1 for walls and 0 for ground.
 
 	"""
-	possible_creation = ['randwalk', 'fusion', 'kurskal', 'ticking']
+	possible_creation = ['randwalk', 'fusion', 'kurskal', 'ticking', 'jumper']
 	#Checking types&others of parameters
 	if type(size) != int:
 		raise TypeError("'size' must be list type, found: "+str(type(size)))
@@ -156,6 +156,10 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 
 	elif 'ticking' in creation:
 		plat = mg.ticking_maze(size)
+
+	elif 'jumper' in creation:
+		plat = mg.create_maze_base_boolean(size)
+		plat = mg.jumping_explorer(plat)
 
 	if complexit:
 		plat = mg.make_maze_complex(plat)
@@ -251,7 +255,7 @@ def full_maze(size, creation, complexit, resolve, plot, timing=True):
 
 	return plat
 
-def caracterisation(maze_map):
+def caracterisation(maze_map, ground_nodes):
 	"""
 	Function to compute the number of ground nodes with 1, 2, 3 and 4
 	connections with other ground nodes.
@@ -260,7 +264,9 @@ def caracterisation(maze_map):
 	----------
 	maze_map : numpy.ndarray
 		2 dimensions numpy array of the maze. This array will have -1 for
-		wall nods, and 0 for ground nods.
+		wall nods, and 0 for ground nodes.
+	ground_nodes : numpy.ndarray
+		Positions of the tested nodes.
 
 	Returns
 	-------
@@ -271,9 +277,7 @@ def caracterisation(maze_map):
 
 	"""
 	kernel = np.array([[[1, 0]], [[0, 1]], [[-1, 0]], [[0, -1]]])
-	
-	ground_nodes = np.argwhere(maze_map[1:-1, 1:-1] == 0)
-	neighbors = ground_nodes+1+kernel
+	neighbors = ground_nodes+kernel
 	neighbors = np.sum(maze_map[neighbors[:, :, 0],
 							    neighbors[:, :, 1]] == 0, axis=0)
 
