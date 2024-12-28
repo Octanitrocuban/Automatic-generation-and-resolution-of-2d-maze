@@ -7,11 +7,13 @@ The list of script and their purpose:
     This script contain the functions to generate a maze as a 2d numpy array. The functions stored are:
       - create_maze_base: generate the basis that will be used by the first method to generate automatically a maze with the function maze_formation.
       - create_maze_base_boolean: generate the basis that will be used by the second method to generate automatically a maze with the function make_maze_exhaustif.
-      - maze_formation: first method to generate automatically a maze, take in input the output of the function create_maze_base. It will randomly draw 2 indices between 1 and len(base)-2, then if it is a wall it break it by putting a 0 and the newly 2 conected ground node are set at min([cell1, cell2]). It continue until all the ground, starting and ending nodes are not connected together.
-      - make_maze_exhaustif: second method to generate automatically a maze. It take in input the output of the function create_maze_base_bool. It randomly draw a position correponding to a ground node and change it's value from 0 to one. Then it randomly choose a unvisited other ground node in its three (or less) unexplored neighbours. It break the wall with a 1 and set the new gound node position to 1. It continue while all of his neighbours are visited. Then if all ground, starting and ending nodes are connected it stop, else it take the exact path it retraces his steps until he finds a possible passage, and rebreak the wall.
+      - maze_formation: function to generate automatically a maze, take in input the output of the function create_maze_base. It will randomly draw 2 indices between 1 and len(base)-2, then if it is a wall it break it by putting a 0 and the newly 2 conected ground node are set at min([cell1, cell2]). It continue until all the ground, starting and ending nodes are not connected together.
+      - make_maze_exhaustif: function to generate automatically a maze. It take in input the output of the function create_maze_base_bool. It randomly draw a position correponding to a ground node and change it's value from 0 to one. Then it randomly choose a unvisited other ground node in its three (or less) unexplored neighbours. It break the wall with a 1 and set the new gound node position to 1. It continue while all of his neighbours are visited. Then if all ground, starting and ending nodes are connected it stop, else it take the exact path it retraces his steps until he finds a possible passage, and rebreak the wall.
       - kurskal: function to compute the minimum spanning tree of a dot cloud with Kruskal's algorithm.
       - kurskal_maze: this function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
+      - fork_init: Fork like structure initialization for the ticking maze.
       - ticking_maze: function to create a maze following the descripted algorithm in the youtube video of CaptainLuma in 'New Maze Generating Algorithm (Origin Shift)': https://www.youtube.com/watch?v=zbXKcDVV4G0
+      - jumping_explorer: function to generate automatically a maze. It take in input the output of the function create_maze_base_boolean. It randomly draw a position correponding to a ground node and change it's value from 0 to one. Then it randomly choose a unvisited other ground node in its four neighbours. It break the wall wall with a 1 and set the new gound node position to 1. It continue while all of his neighbours are visited. Then if all ground, starting and ending nodes are connected it stop, else it take a random unreached cell and will run random walk until it found the main path or is stuck.
       - make_maze_complex: this function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
 
 
@@ -58,6 +60,11 @@ We can see on the right most maze strong biais due to the incomplete exploration
 
 ![Exemple picture](img/ticking_201_unbiais.png)
 
+
+Using 11, 51 and 201 as size with jumping explorer method.
+![Exemple picture](img/jumper_11_51_201.png)
+
+
 ## Analysis of labyrinths created
 Distribution of nodes with one (dead end), two, three and four connections. The test was done by creating 1 000 random mazes for each method and eache maze size.
 ![Analysis](img/distribution_of_connections_1.png)
@@ -95,3 +102,8 @@ Add a new algorithm to create maze: ticking_maze.
 10/07/2024
 Add a new function to analyze maze: caracterisation.
 Add a script to gives examples on how to use the modules: examples.py
+
+### Version 4.0
+28/12/2024
+Add a new algorithm to create maze: jumping_explorer.
+bug fix: caracterisation.
