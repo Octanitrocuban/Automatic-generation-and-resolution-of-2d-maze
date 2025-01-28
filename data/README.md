@@ -21,6 +21,14 @@ This figure show the five possible initialisation for the binary tree algorithm.
 
 ![Time took](../img/log_t_evol_med_bint.png)
 
+The four next figures will show the distribution of time consumption for the 1 000 maze generation with 101 cells width.
+
+
+![Time took](../img/)
+![Time took](../img/)
+![Time took](../img/)
+![Time took](../img/)
+
 
 ## Maze structure analysis
 Distribution of nodes with one (dead end), two, three and four connections. The test was done by creating 1 000 random mazes for each method and eache maze size.
