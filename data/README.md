@@ -24,10 +24,10 @@ This figure show the five possible initialisation for the binary tree algorithm.
 The four next figures will show the distribution of time consumption for the 1 000 maze generation with 101 cells width.
 
 
-![Time took](../img/)
-![Time took](../img/)
-![Time took](../img/)
-![Time took](../img/)
+![Time took](../img/time_gene_101.png)
+![Time took](../img/all_oshift_101.png)
+![Time took](../img/all_grower_101.png)
+![Time took](../img/all_bint_101.png)
 
 
 ## Maze structure analysis
