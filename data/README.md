@@ -5,7 +5,13 @@ To analyse the time consumtion to generate the maze was done by creating 1 000 r
 
 Time took to create maze depends of their size and of the algorithm as we can se on the figure below:
 
-![Time took](../img/time_contruction_methods.png)
+![Time took](../img/log_t_evol_med_gener.png)
+
+![Time took](../img/log_t_evol_med_oshift.png)
+
+![Time took](../img/log_t_evol_med_grower.png)
+
+![Time took](../img/log_t_evol_med_bint.png)
 
 
 ## Maze structure analysis
