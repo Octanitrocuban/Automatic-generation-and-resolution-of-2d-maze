@@ -25,9 +25,9 @@ The four next figures will show the distribution of time consumption for the 1 0
 
 
 ![Time took](../img/time_gene_101.png)
-![Time took](../img/all_oshift_101.png)
-![Time took](../img/all_grower_101.png)
-![Time took](../img/all_bint_101.png)
+![Time took](../img/time_all_oshift_101.png)
+![Time took](../img/time_all_grower_101.png)
+![Time took](../img/time_all_bint_101.png)
 
 
 ## Maze structure analysis
