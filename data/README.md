@@ -23,19 +23,48 @@ This figure show the five possible initialisation for the binary tree algorithm.
 
 The four next figures will show the distribution of time consumption for the 1 000 maze generation with 101 cells width.
 
+This figure shows the distribution of time consumption for the 1 000 maze generation with 101 cells width for at leat one of their initialization and/or value of parameters. All algorithms display a gaussian to log-normal distribution. The slowest algorithm is the Kurskal method, followed by the fusion method. At the opposite, faster algorithm is the binary tree algorithm without initilization, followed the initilized binary tree and Sidewinder methods. It is worth to note that even the slowest iteration of Kurskal algorithm took less than 0.40 second to compute. The origin shift distribution shows that even being very simple, the amount of iteration for a factor of 10 make them slower than most of the other algorithm such as the random walking.
 
 ![Time took](../img/time_gene_101.png)
+
+This figure shows the distribution of time consumption for the 1 000 maze generation with 101 cells width for the two possible initialisation of the origin shift algorithm for three number of iteration factor. Their time consumption does not completly follow the size of the iteration factor. With iteration for of 1, the took around 0.06 second to finish, around 0.09 for a factor of 10 and around 0.36 for 100. Using an iteration factor of 100 makes them nearly as slow as the Kurskal algorithm. 
+
 ![Time took](../img/time_all_oshift_101.png)
+
+This figure shows the distribution of time consumption for the 1 000 maze generation with 101 cells width for the ten possible values for the growing tree algorithm. Time consumption decrease logarimically as the number of random steps is increased. The width of the distribution increase with the augmentation of the number of random steps. Their distribution seems mostly gaussian.
+
 ![Time took](../img/time_all_grower_101.png)
+
+This figure shows the distribution of time consumption for the 1 000 maze generation with 101 cells width for the five possible initialisation for the binary tree algorithm. The width distribution of the binary tree without initialization is nearly zero while the other ar around 0.02. Their distribution seem close to a log-normal with an queu in the high values. 
+
 ![Time took](../img/time_all_bint_101.png)
 
 
 ## Maze structure analysis
+
+Length of the optimal path.
+![Analysis](../img/)
+![Analysis](../img/)
+![Analysis](../img/)
+![Analysis](../img/)
+
+Number of turn in the optimal path.
+![Analysis](../img/)
+![Analysis](../img/)
+![Analysis](../img/)
+![Analysis](../img/)
+
+Orientation of the connection of the cells.
+![Analysis](../img/)
+![Analysis](../img/)
+![Analysis](../img/)
+![Analysis](../img/)
+
+Number of connection of the cells.
 Distribution of nodes with one (dead end), two, three and four connections. The test was done by creating 1 000 random mazes for each method and eache maze size.
-![Analysis](../img/distribution_of_connections_1.png)
+![Analysis](../img/)
+![Analysis](../img/)
+![Analysis](../img/)
+![Analysis](../img/)
 
-![Analysis](../img/distribution_of_connections_2.png)
 
-![Analysis](../img/distribution_of_connections_3.png)
-
-![Analysis](../img/distribution_of_connections_4.png)
