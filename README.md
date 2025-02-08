@@ -29,13 +29,24 @@ The list of script and their purpose:
 
   - maze_imshow.py: 
     This script contain the functions to show the mazes, their solution path, and the distance from ground nods to the exit nod.
+      - delta_lims: Function to compute figure limits.
       - show_maze: Function to show the maze once it is build. It is possible to add the path from start to exit and the gradient of the distance of the ground nods to the exit nod.
       - full_maze: Automatic generation and resolution of mazes with the method in maze_generators.py and maze_solvers.py. Show of the maze at different step is also possible through the variable plot. It is also possible to know the time took by the step throug the variable timing.
       - caracterisation: function to compute the number of ground nodes with 1, 2, 3 and 4 connections with other ground nodes.
+      - distribution_caract_1_size: Function to plot the distribution of a caracteristic.
+      - distribution_caract_multip: Function to plot the distribution of multiple caracteristics.
+      - plot_one_stat: Function to plot the evolution of a caracteritic.
+      - show_distrib_norm: Function to plot normalized distribution of caracteristics.
 
 
 
   - examples.py: Script to test the different functions of maze_generator, maze_solver.py and maze_imshow.py.
+
+  - gener_data.py: Script to create a dataset to analyze the mazes.
+
+  - analyzer.py: Script to make and plot mazes characteristics (time consumption, otpimal path length...).
+
+  - 
 
 
 ## Some examples
