@@ -14,6 +14,11 @@ The list of script and their purpose:
       - fork_init: Fork like structure initialization for the ticking maze.
       - ticking_maze: function to create a maze following the descripted algorithm in the youtube video of CaptainLuma in 'New Maze Generating Algorithm (Origin Shift)': https://www.youtube.com/watch?v=zbXKcDVV4G0
       - jumping_explorer: function to generate automatically a maze. It take in input the output of the function create_maze_base_boolean. It randomly draw a position correponding to a ground node and change it's value from 0 to one. Then it randomly choose a unvisited other ground node in its four neighbours. It break the wall wall with a 1 and set the new gound node position to 1. It continue while all of his neighbours are visited. Then if all ground, starting and ending nodes are connected it stop, else it take a random unreached cell and will run random walk until it found the main path or is stuck.
+      - hunt_and_kill: Function to generate a maze with hunt and kill algorithm.
+      - growing_tree: Function to generate a maze with growing treee algorithm.
+      - Eller: Function to generate a maze with Ellers' algorithm.
+      - sidewinder: Function generate a maze with side winder algorithm.
+      - binary_tree: Function generate a maze with binary tree algorithm. The function can use various unitialisation. It was largely inspired by DqwertyC video: "A new maze algorithm optimized for Redstone" (https://www.youtube.com/watch?v=o7OhjEqCvSo)
       - make_maze_complex: this function will transform the maze in order that their will multiple paths from start to end. To achieve this goal, it randomly break some walls that are separating two ground nodes.
 
 
