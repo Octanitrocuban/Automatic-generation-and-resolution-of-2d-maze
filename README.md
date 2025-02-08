@@ -81,6 +81,43 @@ Using 11, 51 and 201 as size with jumping explorer method.
 ![Exemple picture](img/jumper_11_51_201.png)
 
 
+Using 11, 51 and 201 as size with hunt and kill method.
+![Exemple picture](img/hunter_11_51_201.png)
+
+
+Using 11, 51 and 201 as size with growing tree method with a branch growth parameter of 4.
+![Exemple picture](img/grower_11_51_201.png)
+
+
+Using 11, 51 and 201 as size with Eller method.
+![Exemple picture](img/Eller_11_51_201.png)
+
+
+Using 11, 51 and 201 as size with side winder method.
+![Exemple picture](img/sidewinder_11_51_201.png)
+
+
+Using 11, 51 and 201 as size with binary tree method without initialization.
+![Exemple picture](img/bintree_11_51_201.png)
+
+
+Using 11, 51 and 201 as size with binary tree method with center initialization.
+![Exemple picture](img/bintree_center_11_51_201.png)
+
+
+Using 11, 51 and 201 as size with binary tree method with random center initialization.
+![Exemple picture](img/bintree_randcent_11_51_201.png)
+
+
+Using 11, 51 and 201 as size with binary tree method with snake initialization.
+![Exemple picture](img/bintree_snake_11_51_201.png)
+
+
+Using 11, 51 and 201 as size with binary tree method with spiral initialization.
+![Exemple picture](img/bintree_spiral_11_51_201.png)
+
+
+
 ### Analysis of labyrinths created can be found in data folder
 
 
