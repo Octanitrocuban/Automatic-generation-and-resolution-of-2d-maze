@@ -82,7 +82,7 @@ def maze_gradient(array):
 		A 2 dimension array witch is the map on witch we want to compute the
 		distance of cells from the [1, 0] position. Note that here this
 		algorithm will see all cells that doesn't have the same value as the
-		one at FromPos position as wall.
+		one at `positions` as wall.
 
 	Returns
 	-------
@@ -261,6 +261,7 @@ def step_right_hand(maze_map, x, y, regard):
 
 	[In 1]: step_right_hand(Maze, 1, 1, 'E')
 	[Out 1]: (2, 1, 'S')
+	
 
 	"""
 	if regard == "E":
@@ -483,7 +484,7 @@ def wall_hand_solve(base, hand):
 	recadre = np.full((width+2, width+2), -1)
 	recadre[1:-1, 1:-1] = base
 	position = [2, 1]
-	direction = "E"#la main est donc sur le mur Sud
+	direction = "E" # Hand on the south wall
 	end = [np.shape(recadre)[0]-3, np.shape(recadre)[1]-2]
 	c = 0
 	trajet = []
@@ -519,7 +520,7 @@ def wall_hand_solve(base, hand):
 
 def tri_hand_solve_path(path):
 	"""
-	This function will browse the list of positions in the array Chemin and
+	This function will browse the list of positions in the array 'path' and
 	remove all the 'backward' due to dead-end or loop (roundabout).
 
 	Parameters
