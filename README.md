@@ -51,7 +51,10 @@ The list of script and their purpose:
 
   - analyzer.py: Script to make and plot mazes characteristics (time consumption, otpimal path length...).
 
-  - 
+  - maze_statistics: Script with the finction to extract maze caracteristics.
+      - caracterisation_nco: Function to compute the number of ground nodes with 1, 2, 3 and 4 connections with other ground nodes.
+      - path_opti_stats:
+      - caracterisation_orient: 
 
 
 ## Some examples
