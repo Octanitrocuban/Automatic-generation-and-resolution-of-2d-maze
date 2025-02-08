@@ -75,12 +75,12 @@ Orientation of the connection of the cells.
 Number of connection of the cells.
 Distribution of nodes with one (dead end), two, three and four connections. The test was done by creating 1 000 random mazes for each method and eache maze size.
 
-![Analysis](../img/)
+![Analysis](../img/connect_numb_distri_gen.png)
 
-![Analysis](../img/)
+![Analysis](../img/connect_numb_distri_oshift.png)
 
-![Analysis](../img/)
+![Analysis](../img/connect_numb_distri_grower.png)
 
-![Analysis](../img/)
+![Analysis](../img/connect_numb_distri_bint.png)
 
 
