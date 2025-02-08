@@ -43,10 +43,14 @@ This figure shows the distribution of time consumption for the 1 000 maze genera
 ## Maze structure analysis
 
 Length of the optimal path.
-![Analysis](../img/)
-![Analysis](../img/)
-![Analysis](../img/)
-![Analysis](../img/)
+
+![Analysis](../img/len_op_dstb_gen.png)
+
+![Analysis](../img/len_op_dstb_oshift.png)
+
+![Analysis](../img/len_op_dstb_grower.png)
+
+![Analysis](../img/len_op_dstb_bint.png)
 
 Number of turn in the optimal path.
 ![Analysis](../img/)
