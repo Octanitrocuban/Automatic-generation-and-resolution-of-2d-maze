@@ -53,22 +53,34 @@ Length of the optimal path.
 ![Analysis](../img/len_op_dstb_bint.png)
 
 Number of turn in the optimal path.
-![Analysis](../img/)
-![Analysis](../img/)
-![Analysis](../img/)
-![Analysis](../img/)
+
+![Analysis](../img/nturn_op_dstb_gen.png)
+
+![Analysis](../img/nturn_op_dstb_oshift.png)
+
+![Analysis](../img/nturn_op_dstb_grower.png)
+
+![Analysis](../img/nturn_op_dstb_bint.png)
 
 Orientation of the connection of the cells.
-![Analysis](../img/)
-![Analysis](../img/)
-![Analysis](../img/)
-![Analysis](../img/)
+
+![Analysis](../img/connect_orient_distri_gen.png)
+
+![Analysis](../img/connect_orient_distri_oshift.png)
+
+![Analysis](../img/connect_orient_distri_grower.png)
+
+![Analysis](../img/connect_orient_distri_bint.png)
 
 Number of connection of the cells.
 Distribution of nodes with one (dead end), two, three and four connections. The test was done by creating 1 000 random mazes for each method and eache maze size.
+
 ![Analysis](../img/)
+
 ![Analysis](../img/)
+
 ![Analysis](../img/)
+
 ![Analysis](../img/)
 
 
