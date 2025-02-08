@@ -53,8 +53,8 @@ The list of script and their purpose:
 
   - maze_statistics: Script with the finction to extract maze caracteristics.
       - caracterisation_nco: Function to compute the number of ground nodes with 1, 2, 3 and 4 connections with other ground nodes.
-      - path_opti_stats:
-      - caracterisation_orient: 
+      - path_opti_stats: Function to compute caracteristics of the optimal path of a given maze.
+      - caracterisation_orient: Function to compute the distribution of the orientation of the connection of the cells.
 
 
 ## Some examples
