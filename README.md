@@ -94,3 +94,7 @@ Add a script to gives examples on how to use the modules: examples.py
 28/12/2024
 Add a new algorithm to create maze: jumping_explorer.
 bug fix: caracterisation.
+
+### Version 5.0
+08/02/2025
+Add five new algorithms to create maze: hunt and kill, growing tree, Ellers' algorithm, Side Winder algorithm, Binary tree.
