@@ -154,3 +154,10 @@ bug fix: caracterisation.
 ### Version 5.0
 08/02/2025
 Add five new algorithms to create maze: hunt and kill, growing tree, Ellers' algorithm, Side Winder algorithm, Binary tree.
+
+### Version 5.1
+16/10/2025
+Binary tree (with initialization) is between 27 and 39 times faster;
+Fusion method is around 3.83 times faster;
+Kruskal maze method is around 32 to 38 percent faster;
+Origin shift initialization is 3.66 times faster, the function also get a clearer definition of the number of random step to make.
