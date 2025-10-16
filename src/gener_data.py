@@ -10,7 +10,7 @@ from time import time
 import maze_generators as mg
 import maze_statistics as mstats
 #=============================================================================
-to_do = ['plot_distrib_t_generation']
+to_do = ['']
 
 if 'maze_generate_dataset' in to_do:
     """
@@ -333,6 +333,9 @@ if 'maze_caract' in to_do:
     np.save('../data/maze_caracter_dict.npy', np.array([mazes_stats]))
 
 if 'maze_caract_arr' in to_do:
+    """
+    To transform raw register maze statistics into arrays to ease their use.
+    """
     widths = np.arange(11, 102, 10)
     maze_caracter_arr = {}
     maze_caracter_dict = np.load('../data/maze_caracter_dict.npy',
