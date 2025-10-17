@@ -9,7 +9,7 @@ import numpy as np
 def maze_reduction(base):
 	"""
 	Look at the ground nodes, and if they are dead end, it turn them in wall.
-	Note that if you did not use the function make_maze_complex, there will be
+	Note that if you did not use the function make_multipathe, there will be
 	only remain the unique straight path.
 
 	Parameters
@@ -25,7 +25,7 @@ def maze_reduction(base):
 		
 	Exemple
 	-------
-	[In 0]: _ = make_maze_complex(maze_formation(create_maze_base(11)))
+	[In 0]: _ = make_multipathe(maze_formation(create_maze_base(11)))
 	[Out 0]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
 					[ 0,  0,  0,  0, -1,  0,  0,  0,  0,  0, -1],
 					[-1,  0, -1,  0, -1, -1, -1,  0, -1, -1, -1],
@@ -92,7 +92,7 @@ def maze_gradient(array):
 
 	Exemple
 	-------
-	[In 0]: _ = make_maze_complex(maze_formation(create_maze_base(11)))
+	[In 0]: _ = make_multipathe(maze_formation(create_maze_base(11)))
 	[Out 0]: array([[-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
 					[ 0,  0,  0,  0, -1,  0,  0,  0,  0,  0, -1],
 					[-1,  0, -1,  0, -1, -1, -1,  0, -1, -1, -1],
@@ -122,7 +122,7 @@ def maze_gradient(array):
 	shp = array.shape
 	# calculate the position at the end of the maze
 	positions = np.copy([[shp[0]-2, shp[1]-1]])
-	gradient = np.copy(array)
+	gradient = np.copy(array.astype('int64'))
 	kernel = np.array([[[-1,  0]], [[ 0, -1]], [[ 0,  1]], [[ 1,  0]]])
 	stop = False
 	dist = 1
