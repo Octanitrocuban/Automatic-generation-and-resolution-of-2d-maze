@@ -1,4 +1,5 @@
 Here is an analysis of the generated mazes for the various algorithms.
+The test was done by creating 1 000 random mazes for each method and 10 maze size.
 
 ## Time consumtion
 To analyse the time consumtion to generate the maze was done by creating 1 000 random mazes for each method and eache maze size.
@@ -44,13 +45,13 @@ This figure shows the distribution of time consumption for the 1 000 maze genera
 
 Length of the optimal path.
 
-![Analysis](../img/len_op_dstb_gen.png)
+![Analysis](../img/distrib_opti_path_l_all_sz101.png)
 
-![Analysis](../img/len_op_dstb_oshift.png)
+![Analysis](../img/distrib_opti_path_l_oshift_sz101.png)
 
-![Analysis](../img/len_op_dstb_grower.png)
+![Analysis](../img/distrib_opti_path_l_grower_sz101.png)
 
-![Analysis](../img/len_op_dstb_bint.png)
+![Analysis](../img/distrib_opti_path_l_bintree_sz101.png)
 
 Number of turn in the optimal path.
 
@@ -60,27 +61,26 @@ Number of turn in the optimal path.
 
 ![Analysis](../img/nturn_op_dstb_grower.png)
 
-![Analysis](../img/nturn_op_dstb_bint.png)
+![Analysis](../img/nturn_op_dstb_bintree.png)
 
 Orientation of the connection of the cells.
 
-![Analysis](../img/connect_orient_distri_gen.png)
+![Analysis](../img/distrib_direction_gen.png)
 
-![Analysis](../img/connect_orient_distri_oshift.png)
+![Analysis](../img/distrib_direction_oshift.png)
 
-![Analysis](../img/connect_orient_distri_grower.png)
+![Analysis](../img/distrib_direction_grower.png)
 
-![Analysis](../img/connect_orient_distri_bint.png)
+![Analysis](../img/distrib_direction_bintree.png)
 
 Number of connection of the cells.
-Distribution of nodes with one (dead end), two, three and four connections. The test was done by creating 1 000 random mazes for each method and eache maze size.
 
-![Analysis](../img/connect_numb_distri_gen.png)
+![Analysis](../img/distrib_n_co_gen.png)
 
-![Analysis](../img/connect_numb_distri_oshift.png)
+![Analysis](../img/distrib_n_co_oshift.png)
 
-![Analysis](../img/connect_numb_distri_grower.png)
+![Analysis](../img/distrib_n_co_grower.png)
 
-![Analysis](../img/connect_numb_distri_bint.png)
+![Analysis](../img/distrib_n_co_bintree.png)
 
 
